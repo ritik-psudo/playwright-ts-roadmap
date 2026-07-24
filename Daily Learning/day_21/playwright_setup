@@ -1,0 +1,34 @@
+Step 1. The essential extension: Playwright Test for VS Code
+
+This is the single most important addition today:
+1. Open Extensions (Ctrl+Shift+X)
+2. Search "Playwright Test for VSCode" (by Microsoft) → Install
+
+Step 2. Verify it's working:
+
+1. Give command "npx playwright install" in the terminal.
+2. Open your playwright-framework folder (from Day 13) in VS Code
+3. Click the Testing icon in the left sidebar (flask icon)
+4. You should see tests/example.spec.ts listed with its individual test cases
+5. Click the ▶️ next to one test — it should run just that test and show a green checkmark or red X
+
+Step 3. Recommended supporting extensions (quick installs):
+
+1. ESLint — flags code issues/style problems as you type
+2. Error Lens — shows TypeScript errors inline on the same line, instead of just underlining (huge time-saver, you'll want this immediately)
+3. Prettier — auto-formats your code consistently (optional, but nice for clean commits)
+
+Step 4. Key VS Code settings worth turning on:
+
+Open Settings (Ctrl+,) and search for these:
+1. Format On Save → enable it (auto-cleans up formatting every time you save)
+2. Editor: Default Formatter → set to Prettier if installed
+
+Step 5. Debugging setup — running a single test in debug mode:
+
+1. Click the ▶️ dropdown next to a test in the Testing sidebar → choose "Debug Test"
+2. This opens the browser in headed mode, pauses at breakpoints you set (click in the gutter left of a line number to set one), and lets you inspect variables live.
+
+Step 6. IntelliSense check — confirm Playwright's types are working:
+
+Open tests/example.spec.ts and type page. inside a test block — you should see a dropdown of every available Playwright method (click, fill, goto, etc.) with descriptions. This confirms TypeScript is correctly picking up Playwright's type definitions.
