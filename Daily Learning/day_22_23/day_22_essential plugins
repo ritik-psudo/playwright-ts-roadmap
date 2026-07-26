@@ -1,0 +1,7 @@
+Essentials Plugins for VS Code
+
+1. Git Lens: Adds inline "blame" annotations showing who last changed each line and when, plus a much richer commit history view than plain Git. Useful once you're working in a team or just want to trace when/why a test broke.
+
+2. Path Intellisense: Auto completes the paths as we type imports.
+import { TestCase } from "./testUt█  // suggests testUtils.ts automatically
+
