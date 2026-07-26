@@ -1,0 +1,25 @@
+{
+  "workbench.startupEditor": "none",
+  "playwright.reuseBrowser": false,
+  "debug.terminal.clearBeforeReusing": true,
+  "code-runner.clearPreviousOutput": true,
+  "explorer.confirmDelete": false,
+  "files.autoSave": "afterDelay",
+  "terminal.integrated.initialHintCopilotCli": false,
+  "github.copilot.enable": {
+    "*": false
+  },
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "playwright.showTrace": true,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4o-mini",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/test-results": true,
+    "**/playwright-report": true
+  }
+}

@@ -1,0 +1,40 @@
+Workspace Configuration
+
+1. tsconfig.json —
+   json
+   {
+   "compilerOptions": {
+   "target": "ES2021",
+   "module": "commonjs",
+   "strict": true,
+   "esModuleInterop": true,
+   "skipLibCheck": true
+   }
+   }
+   strict: true — this is why TypeScript has been catching all your type errors since Day 1. Never turn this off.
+   target: which JavaScript version your code compiles down to. ES2021+ supports modern features you've used (optional chaining, nullish coalescing).
+   esModuleInterop: makes import/export (Day 10 style) work smoothly with older-style JavaScript modules.
+
+2. Multi-root workspaces (optional but useful concept)
+
+If you ever want your Day 1-20 practice folder (ts_practice) and your Day 13+ Playwright project (playwright-framework) open side by side in one VS Code window:
+
+File → Add Folder to Workspace → select the second folder
+File → Save Workspace As → saves a .code-workspace file
+
+3. .vscode/settings.json — project-specific overrides (expanding Day 21)
+
+Beyond formatting, you can scope settings to just this project:
+
+json
+{
+"editor.formatOnSave": true,
+"typescript.updateImportsOnFileMove.enabled": "always",
+"files.exclude": {
+"**/node_modules": true,
+"**/test-results": true,
+"\*\*/playwright-report": true
+}
+}
+
+files.exclude hides clutter folders from your VS Code file explorer sidebar — you'll thank yourself once node_modules has thousands of files you never need to see.
