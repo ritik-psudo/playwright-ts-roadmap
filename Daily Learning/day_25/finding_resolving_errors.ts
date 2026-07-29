@@ -1,6 +1,6 @@
 //How to identify, analyze, debug and fix the Playwright test failures effectively
 
-import {test, expect} from "@playwright/test";
+import { test, expect } from "@playwright/test";
 
 //1. Types of failures in Playwright test:
 
@@ -103,7 +103,7 @@ Possible Root Causes:
 3. Incorrect Test Data.
 */
 
-//4. Locator Debugging: 
+//4. Locator Debugging:
 
 /*
 1.) npx playwright codegen //best to use "getByLabel" or "getByRole"
@@ -138,23 +138,23 @@ Trace Viewer Shows:
 
 //6. Advanced Debugging Methods:
 
-test("Error Console", async ({page})=>{
-    await page.on('console',msg => {
-        console.log(msg.text()); //Browser Console Logs
-    });
+test("Error Console", async ({ page }) => {
+  await page.on("console", (msg) => {
+    console.log(msg.text()); //Browser Console Logs
+  });
 
-    await page.on('pageerror', err => {
-        console.log(err.message); //JavaScript Errors
-    });
+  await page.on("pageerror", (err) => {
+    console.log(err.message); //JavaScript Errors
+  });
 
-    await page.on('response', response => {
-        console.log(response.status(), response.url()); //Network Monitoring
-    });
+  await page.on("response", (response) => {
+    console.log(response.status(), response.url()); //Network Monitoring
+  });
 
-    await page.screenshot({
-        path: 'failure.png',
-        fullPage: true
-    });
+  await page.screenshot({
+    path: "failure.png",
+    fullPage: true,
+  });
 });
 
 //Real Project Debugging Approach
@@ -192,5 +192,3 @@ Step 8
 
 Fix root cause, not symptom.
 */
-
-

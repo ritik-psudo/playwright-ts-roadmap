@@ -1,0 +1,27 @@
+1. Open playwright.config.ts in your Day 13 project.
+
+2. Running tests against specific browsers:
+   npx playwright test # runs against ALL projects (chromium, firefox, webkit)
+   npx playwright test --project=chromium # runs ONLY chromium
+   npx playwright test --project=firefox --project=webkit # runs firefox AND webkit only
+
+3. Adding mobile viewport testing (bonus — same three engines, mobile emulation)
+
+projects: [
+{ name: "chromium", use: { ...devices["Desktop Chrome"] } },
+{ name: "Mobile Chrome", use: { ...devices["Pixel 7"] } },
+{ name: "Mobile Safari", use: { ...devices["iPhone 14"] } },
+],
+
+4. Global use block — settings shared across ALL projects
+
+export default defineConfig({
+use: {
+baseURL: "https://example.com", // shared by every project unless overridden
+trace: "on-first-retry",
+},
+projects: [
+{ name: "chromium", use: { ...devices["Desktop Chrome"] } },
+{ name: "firefox", use: { ...devices["Desktop Firefox"] } },
+],
+});
