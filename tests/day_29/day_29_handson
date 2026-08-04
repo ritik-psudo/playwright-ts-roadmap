@@ -1,0 +1,92 @@
+Q1. Find and note the current values of timeout, retries, and workers in your config (the installer sets reasonable defaults — write down what they currently are).
+
+Ans: timeout: 30000, retries: process.env.CI ? 2: 0, workers: process.env.CI ? 1 : 4
+
+Q2. Temporarily set timeout: 1000 (1 second — deliberately too short). Run any test that involves page.goto() to a real site, and confirm it now fails due to timeout. Then revert it back to a reasonable value (e.g., 30000).
+
+Ans: Test timeout of 1000ms exceeded. Tearing down "context" exceeded the test timeout of 1000ms.
+
+Q3. Add/confirm expect: { timeout: 5000 } in your config. Write a quick test asserting toBeVisible() on a real element, confirm it still passes normally.
+
+Ans: Running 1 test using 1 worker
+1 passed (4.0s)
+
+Q4. Set retries: 2 temporarily. Write a test that intentionally fails (like Day 28's broken assertion), run it, and watch the terminal output — you should see it attempt the test 3 times total (1 initial + 2 retries) before finally reporting it as failed.
+
+Ans:
+Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('link', { name: 'Get started1' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('link', { name: 'Get started1' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('link', { name: 'Get started1' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+Q5. Change reporter to "list" instead of "html", re-run your Day 28 test file, and compare the console output style to what you've seen before with the HTML report.
+
+Ans:
+Running 2 tests using 2 workers
+
+✓ 1 [chromium] › tests\day_29\config.spec.ts:33:1 › web page (1.9s)
+✓ 2 [chromium] › tests\day_29\config.spec.ts:37:1 › is visible (2.0s)
+
+2 passed (3.0s)
+
+Q6. Add screenshot: "only-on-failure" and video: "retain-on-failure" to your use block (if not already present). Run a deliberately broken test, then check your test-results/ folder — confirm a screenshot (and possibly video) was saved for the failed test.
+
+Ans:
+Running 2 tests using 2 workers
+
+✘ 1 [chromium] › tests\day_29\config.spec.ts:37:1 › is visible (7.7s)
+✘ 2 [chromium] › tests\day_29\config.spec.ts:33:1 › web page (1.7s)
+
+1. [chromium] › tests\day_29\config.spec.ts:33:1 › web page
+
+attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+test-results\day_29-config-web-page-chromium\test-failed-1.png
+────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\day_29-config-web-page-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\day_29-config-web-page-chromium\error-context.md
+
+2.  [chromium] › tests\day_29\config.spec.ts:37:1 › is visible
+
+attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+test-results\day_29-config-is-visible-chromium\test-failed-1.png
+────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\day_29-config-is-visible-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\day_29-config-is-visible-chromium\error-context.md
+
+Q7. Revert all your temporary/experimental changes (timeout, retries, reporter) back to sensible defaults once you've observed each behavior.
+
+Ans:
+Running 2 tests using 2 workers
+
+✓ 1 [chromium] › tests\day_29\config.spec.ts:33:1 › web page (2.5s)
+✓ 2 [chromium] › tests\day_29\config.spec.ts:37:1 › is visible (2.5s)
+
+2 passed (3.7s)
