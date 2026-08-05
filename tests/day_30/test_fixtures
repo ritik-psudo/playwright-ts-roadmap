@@ -1,0 +1,6 @@
+Fixtures
+
+Fixtures are how Playwright provides a fresh page, context and browser for each test. The setup automatically every time before the test runs and gets teared down after the test is executed.
+
+API testing lets us make call directly to the API which reduces UI interventions for example: basic tasks such as creating test data quickly can be done via API requests instead of goining through Sign Up UI forms each and every time (slow).
+
