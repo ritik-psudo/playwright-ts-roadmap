@@ -1,0 +1,51 @@
+Playwright Inspector: It provides a proper tool to inspect element to find the locators of the element.
+
+1. Launching the inspector: 
+
+Method 1: Debug Mode
+
+npx playwright test tests/day_31/day_31.spec.ts --debug
+
+This runs the test in debug mode which provides feature of running test step by step.
+
+Method 2: Headless with Inspector (inspect without running a test)
+
+npx playwright codegen https://example.com
+
+This opens the codegen mode, where you can perform the test in the browser and the code will be auto generated for the same.
+
+2. The Inspector Window:
+
+When we launch the inspector via --debug, a seperate window appears with:
+
+a. Current line of the test (highlighted)
+b. Action Toolbar (step over, step into, step out, continue)
+c. DOM tree showing the page html structure
+d. Locators panel showing on which element the current action is taking place
+e. Console for runnung quick javascript.
+
+3. The "Pick Locator" feature:
+
+In the inspector window,s top left there's a crosshair (or use Ctrl+Shift+0):
+a. Tne browser comes to focus.
+b. Move the mouse over to the element you want to locate
+c. Hovering highlights the element in blue and shows a suggestion of locators.
+d. Click on the element you want.
+e. The inspector suggests a locator(getByRole, getByLabel, getByText).
+
+4. Step through debugging:
+
+The --debug method provide some actions that are:
+
+a. Step Over (F10): run current line, see the update on the page, move to the next line
+b. Step Into (F11): it current line calls a function, jump inside the function
+c. Continue (F5): resumes untill the next breakpoint is reached
+
+5. Inspecting elements in the Inspector's DOM tree:
+
+While paused (or in Codegen mode), the Inspector shows the full HTML tree. Click on elements in the tree to:
+
+a. Highlight them on the live page (blue outline)
+b. See their properties (id, class, aria-label, etc.)
+c. Get locator suggestions for that element automatically.
+
