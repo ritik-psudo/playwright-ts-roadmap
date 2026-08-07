@@ -1,0 +1,70 @@
+If a test passes locally and fails in CI. Traces captures everything - screenshots at every steps, Network status, Console Log.
+
+1. What traces captures -
+
+a. Screenshots at each and every steps
+b. DOM snapshots (complete HTML at each line)
+c. Network Status (all HTTP requests/responses)
+d. Console Logs
+e. Actions timeline (fills, click, assertions in sequence)
+
+2. Enabling traces -
+
+In the playwright.config.ts file, inside the "use" field mention:
+
+use {
+traces: "on-first-retry",
+},
+
+"traces" keyword expects values that are:
+
+a. "off" - don't capture the traces
+b. "on" - capture traces for each and every test
+c. "on-first-retry" - capture traces only on the first retry after a failure
+d. "retain-on-failure" - capture traces for all tests but deletes and keeps only the one where the test failed
+
+3. Where traces are saved -
+
+After running each test, traces are saved in:
+
+test-results/tests-day32-practice-spec-first-test-chromium.zip
+
+The traces are save in a zip format which can be opened with Test Viewer
+
+4. Viewing the traces:
+
+Method 1: From the command line -
+
+npx playwright show-trace test-results/tests-day32-practice-spec-first-test-chromium.zip
+
+Method 2: From the HTML report -
+
+npx playwright show-report
+
+5. Inside Trace Viewer:
+
+The trace viewer interface contains -
+
+a. Timeline - every action in sequential order (clicks, fills, assertions)
+b. Main View - Screenshot or DOM Snapshot at the line of code
+c. Inspector on the right - shows page HTML structure at that certain line of code
+d. Network Tab - all HTTP requests/response that happened
+
+6. Debugging workflow with traces
+
+Test fails in CI. You pull down the trace:
+
+a. Open it with show-trace
+b. Scroll through the timeline to find where things went wrong
+c. Click just before the failure — see what the page looked like
+d. Click on the failure step — see what the assertion expected vs. what actually happened
+e. Check the Network tab — did a request fail? Did a response come back wrong?
+f. You now have the exact information to fix the issue (or add more waiting, retry logic, etc.)
+
+7. Traces cleanup:
+
+After few tests the traces folder starts filling up, to delete old traces
+
+rm -rf test-results/ (cleans up the old traces)
+
+npx playwright test (to run new test and generate fresh traces)
